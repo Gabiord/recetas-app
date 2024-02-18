@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import { fonts } from './src/global/fonts';
 import Home from './src/screens/Home'
@@ -22,6 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   androidSafeArea: {
     flex: 1,
-    paddingTop:  StatusBar.currentHeight 
+    backgroundColor: "white",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   }
 });
