@@ -1,7 +1,9 @@
-import { StyleSheet, SafeAreaView, Platform, StatusBar } from 'react-native';
+import { StyleSheet, SafeAreaView, Platform, StatusBar, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { fonts } from './src/global/fonts';
 import Home from './src/screens/Home'
+import SplashScreen from './src/screens/SplashScreen';
+import Recipe from './src/screens/Recipe';
 
 export default function App() {
 
@@ -12,9 +14,9 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.androidSafeArea}>
-      <Home />
-    </SafeAreaView>
+    <View style={styles.androidSafeArea}>
+      <Home/>
+    </View>
   );
 };
 

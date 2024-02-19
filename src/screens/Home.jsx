@@ -5,6 +5,7 @@ import {
   TextInput,
   Pressable,
   Image,
+  SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
 import CardList from '../components/CardList'
@@ -23,7 +24,7 @@ const Home = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FilterModal modalVisible={modalVisible} onPressCategory={onPressCategory} />
       <Text style={styles.text}>Buscar Recetas</Text>
       <View style={styles.searchBar}>
@@ -33,7 +34,7 @@ const Home = () => {
         </Pressable>
       </View>
       <CardList category={category} textInput={textInput}/>
-    </View>
+    </SafeAreaView>
   );
 };
 
