@@ -1,12 +1,10 @@
 import { StyleSheet, SafeAreaView, Platform, StatusBar, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { fonts } from './src/global/fonts';
-import Home from './src/screens/Home'
-import SplashScreen from './src/screens/SplashScreen';
-import Recipe from './src/screens/Recipe';
+
+import Navigator from './src/navigation/Navigator';
 
 export default function App() {
-
   const [fontsLoaded] = useFonts(fonts);
 
   if (!fontsLoaded) {
@@ -15,7 +13,7 @@ export default function App() {
 
   return (
     <View style={styles.androidSafeArea}>
-      <Home/>
+      <Navigator />
     </View>
   );
 };

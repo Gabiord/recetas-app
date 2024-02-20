@@ -13,7 +13,7 @@ import IconsAssets from "../../assets/icons/IconsAssets";
 import FilterModal from "../components/FilterModal";
 import { colors } from "../global/colors";
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [textInput, setTextInput] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [category, setCategory] = useState('');
@@ -33,7 +33,7 @@ const Home = () => {
           <Image style={styles.image} source={IconsAssets.filter} />
         </Pressable>
       </View>
-      <CardList category={category} textInput={textInput}/>
+      <CardList category={category} textInput={textInput} navigation={navigation} />
     </SafeAreaView>
   );
 };

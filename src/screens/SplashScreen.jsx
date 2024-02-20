@@ -14,7 +14,7 @@ import { colors } from "../global/colors";
 
 const background = require("../../assets/images/splashScreen_backgroundImage.jpg");
 
-const SplashScreen = () => {
+const SplashScreen = ({navigation}) => {
   return (
     <ImageBackground
       source={background}
@@ -34,7 +34,7 @@ const SplashScreen = () => {
           <Text style={styles.textBelow}>Get         Cooking</Text>
           <Text style={styles.textEnd}>La manera mas simple de cocinar</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{navigation.navigate("Home")}}>
           <View style={styles.btnContainerStyle}>
             <Text style={styles.btnTextStyle}> Comenzar    ➜</Text>
           </View>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import recetas from "../data/recetas.json";
 
-const CardList = ({ category, textInput }) => {
+const CardList = ({ category, textInput, navigation }) => {
   const [dataRecetas, setDataRecetas] = useState(recetas);
 
   const numColumns = 2;
@@ -21,7 +21,6 @@ const CardList = ({ category, textInput }) => {
   return (
     <>
       <View style={styles.results}>
-
       <Text style={styles.text}>Resultados</Text>
       <Text style={styles.text}>{quantity} Recetas</Text>
         </View>
@@ -29,7 +28,8 @@ const CardList = ({ category, textInput }) => {
         <FlatList
           data={nameFilter}
           numColumns={numColumns}
-          renderItem={({ item }) => <Card item={item} />}
+          renderItem={({ item }) => <Card item={item}
+          navigation={navigation} />}
           />
       </View>
     </>
