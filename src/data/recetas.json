@@ -1,5 +1,6 @@
 [
     {
+      "id": 1,
       "name": "Arroz con pollo",
       "chef": "Maria Sanchez",
       "rate": "4",
@@ -9,6 +10,7 @@
       "category": "Almuerzo"
     },
     {
+      "id": 2,
       "name": "Lomo saltado",
       "chef": "Carlos Gomez",
       "rate": "5",
@@ -18,6 +20,7 @@
       "category": "Cena"
     },
     {
+      "id": 3,
       "name": "Tallarines verdes",
       "chef": "Luisa Torres",
       "rate": "3",
@@ -27,6 +30,7 @@
       "category": "Vegetariano"
     },
     {
+      "id": 4,
       "name": "Seco de cordero",
       "chef": "Pedro Rodriguez",
       "rate": "4",
@@ -36,6 +40,7 @@
       "category": "Cena"
     },
     {
+      "id": 5,
       "name": "Ceviche de pescado",
       "chef": "Ana Ramirez",
       "rate": "5",
@@ -45,6 +50,7 @@
       "category": "Almuerzo"
     },
     {
+      "id": 6,
       "name": "Milanesa de pollo",
       "chef": "Sofia Lopez",
       "rate": "4",
@@ -54,6 +60,7 @@
       "category": "Almuerzo"
     },
     {
+      "id": 7,
       "name": "Sopa de lentejas",
       "chef": "Juan Perez",
       "rate": "3",
@@ -63,6 +70,7 @@
       "category": "Vegetariano"
     },
     {
+      "id": 8,
       "name": "Papa a la huancaina",
       "chef": "Elena Castro",
       "rate": "5",
@@ -72,6 +80,7 @@
       "category": "Vegetariano"
     },
     {
+      "id": 9,
       "name": "Tacos al pastor",
       "chef": "Miguel Hernandez",
       "rate": "4",
@@ -81,6 +90,7 @@
       "category": "Cena"
     },
     {
+      "id": 10,
       "name": "Lasagna de carne",
       "chef": "Laura Martinez",
       "rate": "5",
@@ -90,6 +100,7 @@
       "category": "Almuerzo"
     },
     {
+      "id": 11,
       "name": "Muesli casero con fruta",
       "chef": "Miguel Hernandez",
       "rate": "4",
@@ -99,6 +110,7 @@
       "category": "Desayuno"
     },
     {
+      "id": 12,
       "name": "Tortitas de avena",
       "chef": "Gabriela Ordonez",
       "rate": "4",
@@ -108,6 +120,7 @@
       "category": "Desayuno"
     },
     {
+      "id": 13,
       "name": "Smothie bowl",
       "chef": "Gabriela Ordonez",
       "rate": "5",

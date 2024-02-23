@@ -10,7 +10,7 @@ import { colors } from "../global/colors";
 
 const Card = ({ item, navigation }) => {
   return (
-    <TouchableOpacity onPress={()=>{navigation.navigate("Recipe")}}>
+    <TouchableOpacity onPress={()=>{navigation.navigate("Recipe", {id: item.id})}}>
       <ImageBackground
         source={item.image}
         resizeMode="cover"

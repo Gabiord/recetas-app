@@ -26,7 +26,6 @@ const Home = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <FilterModal modalVisible={modalVisible} onPressCategory={onPressCategory} />
-      <Text style={styles.text}>Buscar Recetas</Text>
       <View style={styles.searchBar}>
         <TextInput style={styles.TextInput} onChangeText={(value)=>setTextInput(value)} placeholder="Buscar por nombre"/>
         <Pressable onPress={() => setModalVisible(!modalVisible)}>

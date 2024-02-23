@@ -15,12 +15,14 @@ import { colors } from "../global/colors";
 const background = require("../../assets/images/splashScreen_backgroundImage.jpg");
 
 const SplashScreen = ({navigation}) => {
+
   return (
     <ImageBackground
       source={background}
       style={styles.backgroundImage}
       imageStyle={{ backgroundColor: colors.black, opacity: 0.9 }}
     >
+
       <LinearGradient
         colors={["transparent",colors.black]}
         style= {styles.gradient}>

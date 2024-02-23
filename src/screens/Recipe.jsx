@@ -1,17 +1,25 @@
-import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity, SectionList } from "react-native";
-import React from "react";
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import React, { useEffect } from "react";
+import recetas from "../data/recetas.json"
 
-const receta = {
-  name: "Sopa de lentejas",
-  chef: "Juan Perez",
-  rate: "3",
-  image: {
-    uri: "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/HP647TGBTUI6ZGYKHCUYHIXNZM.jpg",
-  },
-  category: "Vegetariano",
-};
 
-const Recipe = () => {
+
+const Recipe = ({navigation, route}) => {
+
+
+  const [receta, setReceta] = useState (null)
+
+  const {id} = route.params;
+
+  useEffect(()=>{
+    const recetaFinded = recetas.find((item)=> item.id === id);
+    setReceta(recetaFinded)
+  },[id])
+
+  console.log(receta)
+
+  if(receta){
   return (
     <SafeAreaView>
       <View>
@@ -43,6 +51,7 @@ const Recipe = () => {
       </View>
     </SafeAreaView>
   );
+  }
 };
 
 export default Recipe;
