@@ -1,8 +1,7 @@
 import { StyleSheet, SafeAreaView, Platform, StatusBar, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { fonts } from './src/global/fonts';
-
-import Navigator from './src/navigation/Navigator';
+import TabNavigator from './src/navigation/TabNavigator'
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
@@ -13,7 +12,7 @@ export default function App() {
 
   return (
     <View style={styles.androidSafeArea}>
-      <Navigator />
+      <TabNavigator />
     </View>
   );
 };
