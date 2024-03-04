@@ -1,0 +1,221 @@
+[
+    {
+        "id": 3,
+        "name": "Tallarines verdes",
+        "chef": "Luisa Torres",
+        "rate": "3",
+        "image": {
+            "uri": "https://i.pinimg.com/736x/91/e1/29/91e12992932aa18e165acd7aa0e99e75.jpg"
+        },
+        "category": "Vegetariano",
+        "ingredients": [
+            {
+                "id": "1234567890",
+                "name": "espinaca",
+                "quantity": 200
+            },
+            {
+                "id": "0987654321",
+                "name": "albahaca",
+                "quantity": 50
+            },
+            {
+                "id": "1357924680",
+                "name": "queso parmesano",
+                "quantity": 100
+            },
+            {
+                "id": "2468135790",
+                "name": "aceite de oliva",
+                "quantity": 30
+            },
+            {
+                "id": "9876543210",
+                "name": "ajo",
+                "quantity": 3
+            },
+            {
+                "id": "0123456789",
+                "name": "sal",
+                "quantity": 5
+            },
+            {
+                "id": "5678901234",
+                "name": "pimienta",
+                "quantity": 2
+            },
+            {
+                "id": "4321098765",
+                "name": "tallarines",
+                "quantity": 250
+            }
+        ],
+        "procedure": [
+            {
+                "step": "1",
+                "name": "Cocinar los tallarines en agua con sal hasta que estén al dente"
+            },
+            {
+                "step": "2",
+                "name": "Licuar las hojas de espinaca con el queso fresco, la leche y la sal"
+            },
+            {
+                "step": "3",
+                "name": "En una sartén grande, calentar el aceite de oliva y freír la cebolla y el ajo hasta que estén dorados"
+            },
+            {
+                "step": "4",
+                "name": "Agregar la mezcla de espinaca licuada a la sartén y cocinar a fuego medio durante 5 minutos"
+            },
+            {
+                "step": "5",
+                "name": "Incorporar los tallarines cocidos a la sartén y mezclar bien"
+            },
+            {
+                "step": "6",
+                "name": "Servir los tallarines verdes calientes y espolvorear con queso parmesano"
+            }
+        ],
+        "ration": 1
+    },
+    {
+        "id": 5,
+        "name": "Ceviche de pescado",
+        "chef": "Ana Ramirez",
+        "rate": "5",
+        "image": {
+            "uri": "https://messinthekitchen.com/wp-content/uploads/2021/06/ceviche-de-pescado-2.jpg"
+        },
+        "category": "Almuerzo",
+        "ingredients": [
+            {
+                "id": "1234567890",
+                "name": "pescado",
+                "quantity": 500
+            },
+            {
+                "id": "9876543210",
+                "name": "limón",
+                "quantity": 5
+            },
+            {
+                "id": "4567890123",
+                "name": "cebolla",
+                "quantity": 1
+            },
+            {
+                "id": "7890123456",
+                "name": "ají amarillo",
+                "quantity": 2
+            },
+            {
+                "id": "2109876543",
+                "name": "cilantro",
+                "quantity": 3
+            },
+            {
+                "id": "5432109876",
+                "name": "sal",
+                "quantity": 1
+            }
+        ],
+        "procedure": [
+            {
+                "step": "1",
+                "name": "Cortar el pescado en cubos"
+            },
+            {
+                "step": "2",
+                "name": "Exprimir los limones para obtener el jugo"
+            },
+            {
+                "step": "3",
+                "name": "Picar la cebolla en juliana"
+            },
+            {
+                "step": "4",
+                "name": "Picar los ajíes en rodajas"
+            },
+            {
+                "step": "5",
+                "name": "Picar el cilantro finamente"
+            },
+            {
+                "step": "6",
+                "name": "Mezclar el pescado con el jugo de limón"
+            },
+            {
+                "step": "7",
+                "name": "Agregar la cebolla, los ajíes y el cilantro"
+            },
+            {
+                "step": "8",
+                "name": "Dejar reposar en el refrigerador por 30 minutos antes de servir"
+            }
+        ],
+        "ration": 1
+    },
+    {
+        "id": 6,
+        "name": "Milanesa de pollo",
+        "chef": "Sofia Lopez",
+        "rate": "4",
+        "image": {
+            "uri": "https://wildfork.mx/cdn/shop/articles/03_Milanesa_de_Pollo_con_Papas_Fritas.jpg?v=1614571982"
+        },
+        "category": "Almuerzo",
+        "ingredients": [
+            {
+                "name": "pollo",
+                "quantity": 1
+            },
+            {
+                "name": "pan rallado",
+                "quantity": 1
+            },
+            {
+                "name": "huevos",
+                "quantity": 2
+            },
+            {
+                "name": "harina",
+                "quantity": 1
+            },
+            {
+                "name": "sal",
+                "quantity": 1
+            },
+            {
+                "name": "pimienta",
+                "quantity": 1
+            }
+        ],
+        "procedure": [
+            {
+                "step": "1",
+                "name": "Cortar el pollo en filetes finos"
+            },
+            {
+                "step": "2",
+                "name": "Sazonar los filetes de pollo con sal y pimienta al gusto"
+            },
+            {
+                "step": "3",
+                "name": "En un plato hondo, batir los huevos"
+            },
+            {
+                "step": "4",
+                "name": "Pasar los filetes de pollo por el huevo batido"
+            },
+            {
+                "step": "5",
+                "name": "Rebozar los filetes de pollo en pan rallado"
+            },
+            {
+                "step": "6",
+                "name": "Freír los filetes de pollo en aceite caliente hasta que estén dorados"
+            }
+        ],
+        "ration": 1
+    }
+]

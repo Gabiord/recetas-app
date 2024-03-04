@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Cart = () => {
-  console.log("cart")
+const Notifications = () => {
   return (
     <View>
-      <Text>Hola</Text>
+      <Text>Notifications</Text>
     </View>
   )
 }
 
-export default Cart
+export default Notifications
 
 const styles = StyleSheet.create({})

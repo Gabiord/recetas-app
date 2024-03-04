@@ -1,56 +1,60 @@
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { useState } from "react";
 import React, { useEffect } from "react";
-import recetas from "../data/recetas.json"
+import recetas from "../data/recetas.json";
 
+const Recipe = ({ navigation, route }) => {
+  const [receta, setReceta] = useState(null);
 
+  const { id } = route.params;
 
-const Recipe = ({navigation, route}) => {
+  useEffect(() => {
+    const recetaFinded = recetas.find((item) => item.id === id);
+    setReceta(recetaFinded);
+  }, [id]);
 
-
-  const [receta, setReceta] = useState (null)
-
-  const {id} = route.params;
-
-  useEffect(()=>{
-    const recetaFinded = recetas.find((item)=> item.id === id);
-    setReceta(recetaFinded)
-  },[id])
-
-  console.log(receta)
-
-  if(receta){
-  return (
-    <SafeAreaView>
-      <View>
-        {/* <Image style={styles.images} source={receta.image} /> */}
-        <Text>{receta.name}</Text>
-      </View>
-      <View>
+  if (receta) {
+    return (
+      <SafeAreaView>
+        <View>
+          {/* <Image style={styles.images} source={receta.image} /> */}
+          <Text>{receta.name}</Text>
+        </View>
         <View>
           <View>
-          {/* ImageChef */}
+            <View>{/* ImageChef */}</View>
+            <View>
+              <Text>{receta.chef}</Text>
+              {/* Locacion Chef */}
+            </View>
           </View>
           <View>
-            <Text>{receta.chef}</Text>
-            {/* Locacion Chef */}
+            <TouchableOpacity>
+              <Text>Follow</Text>
+            </TouchableOpacity>
           </View>
+          <View>
+            <TouchableOpacity>
+              <Text>Ingredient</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text>Procedure</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Text>1 Serve</Text>
+            <Text>10 Items</Text>
+          </View>
+          {/* <SectionList></SectionList> */}
         </View>
-        <View>
-          <TouchableOpacity><Text>Follow</Text></TouchableOpacity>
-        </View>
-        <View>
-        <TouchableOpacity><Text>Ingredient</Text></TouchableOpacity>
-        <TouchableOpacity><Text>Procedure</Text></TouchableOpacity>
-        </View>
-        <View>
-          <Text>1 Serve</Text>
-          <Text>10 Items</Text>
-        </View>
-        {/* <SectionList></SectionList> */}
-      </View>
-    </SafeAreaView>
-  );
+      </SafeAreaView>
+    );
   }
 };
 
