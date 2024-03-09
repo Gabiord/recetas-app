@@ -7,8 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import { colors } from "../global/colors";
-import { useDispatch } from "react-redux";
-import { setRecipeIdSelected } from "../features/shop/shopSlice";
+import { useSelector } from "react-redux";
 
 const Card = ({ item, navigation }) => {
 

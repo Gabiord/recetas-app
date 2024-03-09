@@ -1,28 +1,17 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import recetas from "../data/recetas.json"
 import { useSelector } from "react-redux";
 
-const CardList = ({ category, navigation }) => {
+const CardList = ({ navigation }) => {
 
+  const dataRecetas = useSelector(
+    (state) => state.shopReducer.value.recipesFiltered
+  );
 
-  const textInput = useSelector(
-    (state) => state.shopReducer.value.inputRecipeName);
-
-
-  const [dataRecetas, setDataRecetas] = useState(recetas);
   const numColumns = 2;
 
-  const categoryFilter = category
-    ? dataRecetas.filter((receta) => receta.category === category)
-    : dataRecetas;
-
-  const nameFilter = textInput
-    ? categoryFilter.filter((receta) => receta.name.includes(textInput))
-    : categoryFilter;
-
-  const quantity = nameFilter.length;
+  const quantity = dataRecetas.length;
 
   return (
     <>
@@ -32,7 +21,7 @@ const CardList = ({ category, navigation }) => {
       </View>
       <View style={styles.container}>
         <FlatList
-          data={nameFilter}
+          data={dataRecetas}
           numColumns={numColumns}
           renderItem={({ item }) => (
             <Card item={item} navigation={navigation} />

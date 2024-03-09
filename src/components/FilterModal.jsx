@@ -4,12 +4,19 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCategorySelected, setModalVisible, setRecipesFiltered } from "../features/shop/shopSlice";
 
-const FilterModal = ({ modalVisible, onPressCategory }) => {
+const FilterModal = ({ modalVisible }) => {
+
+  const dispatch = useDispatch();
+
+  const onPressCategory = (value) => {
+    dispatch(setCategorySelected(value))
+    dispatch(setModalVisible())
+  };
 
   return (
     <View style={styles.container}>

@@ -7,49 +7,43 @@ import {
   Image,
   SafeAreaView,
 } from "react-native";
-import React, { useState } from "react";
 import CardList from "../components/CardList";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import FilterModal from "../components/FilterModal";
 import { colors } from "../global/colors";
-import { setInputRecipeName } from "../features/shop/shopSlice";
-import { UseDispatch, useDispatch, useSelector } from "react-redux";
+import { setInputRecipeName, setModalVisible } from "../features/shop/shopSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Home = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const textInput = useSelector(
     (state) => state.shopReducer.value.inputRecipeName
   );
 
-  const dispatch = useDispatch();
+  const categorySelected = useSelector(
+    (state) => state.shopReducer.value.categorySelected
+  );
 
-  console.log(textInput);
-
-  const [modalVisible, setModalVisible] = useState(false);
-  const [category, setCategory] = useState("");
-
-  const onPressCategory = (prop) => {
-    setCategory(prop);
-    setModalVisible(false);
-  };
+  const modalVisible = useSelector(
+    (state) => state.shopReducer.value.modalVisible
+  );
 
   return (
     <SafeAreaView style={styles.container}>
-      <FilterModal
-        modalVisible={modalVisible}
-        onPressCategory={onPressCategory}
-      />
+      <FilterModal modalVisible={modalVisible} />
       <View style={styles.searchBar}>
         <TextInput
           style={styles.TextInput}
           onChangeText={(value) => dispatch(setInputRecipeName(value))}
           placeholder="Buscar por nombre"
         />
-        <Pressable onPress={() => setModalVisible(!modalVisible)}>
+        <Pressable onPress={() => dispatch(setModalVisible())}>
           <Image style={styles.image} source={IconsAssets.filter} />
         </Pressable>
       </View>
       <CardList
-        category={category}
+        category={categorySelected}
         textInput={textInput}
         navigation={navigation}
       />
