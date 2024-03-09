@@ -7,8 +7,11 @@ import {
 } from "react-native";
 import React from "react";
 import { colors } from "../global/colors";
+import { useDispatch } from "react-redux";
+import { setRecipeIdSelected } from "../features/shop/shopSlice";
 
 const Card = ({ item, navigation }) => {
+
   return (
     <TouchableOpacity onPress={()=>{navigation.navigate("Recipe", {id: item.id})}}>
       <ImageBackground

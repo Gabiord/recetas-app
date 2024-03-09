@@ -1,11 +1,17 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import recetas from "../data/recetas.json";
+import recetas from "../data/recetas.json"
+import { useSelector } from "react-redux";
 
-const CardList = ({ category, textInput, navigation }) => {
+const CardList = ({ category, navigation }) => {
+
+
+  const textInput = useSelector(
+    (state) => state.shopReducer.value.inputRecipeName);
+
+
   const [dataRecetas, setDataRecetas] = useState(recetas);
-
   const numColumns = 2;
 
   const categoryFilter = category
@@ -21,16 +27,17 @@ const CardList = ({ category, textInput, navigation }) => {
   return (
     <>
       <View style={styles.results}>
-      <Text style={styles.text}>Resultados</Text>
-      <Text style={styles.text}>{quantity} Recetas</Text>
-        </View>
+        <Text style={styles.text}>Resultados</Text>
+        <Text style={styles.text}>{quantity} Recetas</Text>
+      </View>
       <View style={styles.container}>
         <FlatList
           data={nameFilter}
           numColumns={numColumns}
-          renderItem={({ item }) => <Card item={item}
-          navigation={navigation} />}
-          />
+          renderItem={({ item }) => (
+            <Card item={item} navigation={navigation} />
+          )}
+        />
       </View>
     </>
   );
@@ -40,14 +47,13 @@ export default CardList;
 
 const styles = StyleSheet.create({
   container: {},
-  results:{
+  results: {
     flexDirection: "row",
     justifyContent: "space-between",
-    margin:10
-    
+    margin: 10,
   },
-  text:{
-    fontFamily:"PoppinsRegular",
-    fontSize:15
-  }
+  text: {
+    fontFamily: "PoppinsRegular",
+    fontSize: 15,
+  },
 });

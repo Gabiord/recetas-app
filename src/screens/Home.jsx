@@ -8,31 +8,51 @@ import {
   SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
-import CardList from '../components/CardList'
+import CardList from "../components/CardList";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import FilterModal from "../components/FilterModal";
 import { colors } from "../global/colors";
+import { setInputRecipeName } from "../features/shop/shopSlice";
+import { UseDispatch, useDispatch, useSelector } from "react-redux";
 
-const Home = ({navigation}) => {
-  const [textInput, setTextInput] = useState("");
+const Home = ({ navigation }) => {
+  const textInput = useSelector(
+    (state) => state.shopReducer.value.inputRecipeName
+  );
+
+  const dispatch = useDispatch();
+
+  console.log(textInput);
+
   const [modalVisible, setModalVisible] = useState(false);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
 
   const onPressCategory = (prop) => {
-    setCategory(prop)
-    setModalVisible(false)
-  }
+    setCategory(prop);
+    setModalVisible(false);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <FilterModal modalVisible={modalVisible} onPressCategory={onPressCategory} />
+      <FilterModal
+        modalVisible={modalVisible}
+        onPressCategory={onPressCategory}
+      />
       <View style={styles.searchBar}>
-        <TextInput style={styles.TextInput} onChangeText={(value)=>setTextInput(value)} placeholder="Buscar por nombre"/>
+        <TextInput
+          style={styles.TextInput}
+          onChangeText={(value) => dispatch(setInputRecipeName(value))}
+          placeholder="Buscar por nombre"
+        />
         <Pressable onPress={() => setModalVisible(!modalVisible)}>
           <Image style={styles.image} source={IconsAssets.filter} />
         </Pressable>
       </View>
-      <CardList category={category} textInput={textInput} navigation={navigation} />
+      <CardList
+        category={category}
+        textInput={textInput}
+        navigation={navigation}
+      />
     </SafeAreaView>
   );
 };
@@ -40,9 +60,7 @@ const Home = ({navigation}) => {
 export default Home;
 
 const styles = StyleSheet.create({
-  container:{
-
-  },
+  container: {},
   TextInput: {
     width: 255,
     height: 40,
@@ -59,8 +77,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
-  text:{
+  text: {
     fontFamily: "PoppinsBold",
-    marginBottom:10
-  }
+    marginBottom: 10,
+  },
 });
