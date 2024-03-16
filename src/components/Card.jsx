@@ -7,9 +7,11 @@ import {
 } from "react-native";
 import React from "react";
 import { colors } from "../global/colors";
-import { useSelector } from "react-redux";
+
 
 const Card = ({ item, navigation }) => {
+  
+  console.log(item)
 
   return (
     <TouchableOpacity onPress={()=>{navigation.navigate("Recipe", {id: item.id})}}>

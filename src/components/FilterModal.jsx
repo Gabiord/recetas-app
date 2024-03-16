@@ -1,21 +1,18 @@
-import {
-  Modal,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { Modal, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setCategorySelected, setModalVisible, setRecipesFiltered } from "../features/shop/shopSlice";
+import {
+  setCategorySelected,
+  setModalVisible,
+} from "../features/shop/shopSlice";
+import { useGetRecipesByCategoryQuery } from "../services/shopService";
 
 const FilterModal = ({ modalVisible }) => {
-
   const dispatch = useDispatch();
 
   const onPressCategory = (value) => {
     dispatch(setCategorySelected(value))
-    dispatch(setModalVisible())
+    dispatch(setModalVisible());
   };
 
   return (
@@ -68,8 +65,7 @@ export default FilterModal;
 
 const styles = StyleSheet.create({
   modalOverlay: {
-    flex: 1
-
+    flex: 1,
   },
 
   centeredView: {
@@ -77,7 +73,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     marginTop: 22,
-
   },
   modalView: {
     width: "100%",

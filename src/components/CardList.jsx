@@ -1,27 +1,50 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useGetRecipesByCategoryQuery, useGetRecipesQuery } from "../services/shopService";
 
 const CardList = ({ navigation }) => {
-
-  const dataRecetas = useSelector(
-    (state) => state.shopReducer.value.recipesFiltered
-  );
-
   const numColumns = 2;
 
-  const quantity = dataRecetas.length;
+  const textInput = useSelector(
+    (state) => state.shopReducer.value.inputRecipeName
+  );
+
+  const categorySelected = useSelector(
+    (state) => state.shopReducer.value.categorySelected
+  );
+
+  const [recipes, setRecipes] = useState([])
+
+  
+
+  const {
+    data: recipesFilteredByCategory,
+    isLoading,
+    error,
+  } = (categorySelected? useGetRecipesByCategoryQuery(categorySelected): useGetRecipesQuery()) 
+
+  useEffect(() => {
+    if (recipesFilteredByCategory) {
+      const recipesRaw = Object.values(recipesFilteredByCategory);
+      const recipesFiltered = recipesRaw.filter((product) =>
+        product.name.includes(textInput)
+      );
+      setRecipes(recipesFiltered);
+    }
+  }, [recipesFilteredByCategory, textInput]);
+
 
   return (
     <>
       <View style={styles.results}>
         <Text style={styles.text}>Resultados</Text>
-        <Text style={styles.text}>{quantity} Recetas</Text>
+        <Text style={styles.text}>{} Recetas</Text>
       </View>
       <View style={styles.container}>
         <FlatList
-          data={dataRecetas}
+          data={recipes}
           numColumns={numColumns}
           renderItem={({ item }) => (
             <Card item={item} navigation={navigation} />

@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  Text,
   View,
   TextInput,
   Pressable,
@@ -11,19 +10,17 @@ import CardList from "../components/CardList";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import FilterModal from "../components/FilterModal";
 import { colors } from "../global/colors";
-import { setInputRecipeName, setModalVisible } from "../features/shop/shopSlice";
+import {
+  setInputRecipeName,
+  setModalVisible,
+  setRecipesFiltered
+} from "../features/shop/shopSlice";
 import { useDispatch, useSelector } from "react-redux";
+
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
 
-  const textInput = useSelector(
-    (state) => state.shopReducer.value.inputRecipeName
-  );
-
-  const categorySelected = useSelector(
-    (state) => state.shopReducer.value.categorySelected
-  );
 
   const modalVisible = useSelector(
     (state) => state.shopReducer.value.modalVisible
@@ -42,11 +39,7 @@ const Home = ({ navigation }) => {
           <Image style={styles.image} source={IconsAssets.filter} />
         </Pressable>
       </View>
-      <CardList
-        category={categorySelected}
-        textInput={textInput}
-        navigation={navigation}
-      />
+      <CardList navigation={navigation} />
     </SafeAreaView>
   );
 };
