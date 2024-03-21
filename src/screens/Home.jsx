@@ -13,7 +13,6 @@ import { colors } from "../global/colors";
 import {
   setInputRecipeName,
   setModalVisible,
-  setRecipesFiltered
 } from "../features/shop/shopSlice";
 import { useDispatch, useSelector } from "react-redux";
 

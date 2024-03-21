@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import SplashScreen from "../screens/SplashScreen";
-import Recipe from "../screens/Recipe";
+import RecipeDetail from "../screens/RecipeDetail";
 import { Text, StyleSheet } from "react-native";
 
 const stack = createNativeStackNavigator();
@@ -32,8 +32,8 @@ export default function HomeRecipeStack() {
       />
       <stack.Screen
         options={{ headerShown: true }}
-        name="Recipe"
-        component={Recipe}
+        name="RecipeDetail"
+        component={RecipeDetail}
       />
     </stack.Navigator>
   );

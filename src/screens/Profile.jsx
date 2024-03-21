@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import LocationSelector from './LocationSelector'
 
 const Profile = () => {
   return (
     <View>
-      <Text>Profile</Text>
+      <LocationSelector/>
     </View>
   )
 }

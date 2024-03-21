@@ -18,7 +18,6 @@ const CardList = ({ navigation }) => {
   const [recipes, setRecipes] = useState([])
 
   
-
   const {
     data: recipesFilteredByCategory,
     isLoading,
@@ -26,6 +25,7 @@ const CardList = ({ navigation }) => {
   } = (categorySelected? useGetRecipesByCategoryQuery(categorySelected): useGetRecipesQuery()) 
 
   useEffect(() => {
+    console.log(isLoading)
     if (recipesFilteredByCategory) {
       const recipesRaw = Object.values(recipesFilteredByCategory);
       const recipesFiltered = recipesRaw.filter((product) =>

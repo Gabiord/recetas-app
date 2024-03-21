@@ -1,13 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-
 export const shopSlice = createSlice({
   name: "shop",
   initialState: {
     value: {
       recipesFiltered: [],
       inputRecipeName: "",
-      categorySelected: "Cena",
+      categorySelected: "",
       modalVisible: false,
       recipeIdSelected: null,
     },

@@ -9,7 +9,7 @@ import { useState } from "react";
 import React, { useEffect } from "react";
 import recetas from "../data/recetas.json";
 
-const Recipe = ({ navigation, route }) => {
+const RecipeDetail = ({ navigation, route }) => {
   const [receta, setReceta] = useState(null);
 
   const { id } = route.params;
@@ -58,7 +58,7 @@ const Recipe = ({ navigation, route }) => {
   }
 };
 
-export default Recipe;
+export default RecipeDetail;
 
 const styles = StyleSheet.create({
   images: {
