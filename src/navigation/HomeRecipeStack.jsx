@@ -3,6 +3,8 @@ import Home from "../screens/Home";
 import SplashScreen from "../screens/SplashScreen";
 import RecipeDetail from "../screens/RecipeDetail";
 import { Text, StyleSheet } from "react-native";
+import SignIn from "../screens/SignIn";
+import SignUp from "../screens/SignUp";
 
 const stack = createNativeStackNavigator();
 
@@ -24,6 +26,16 @@ export default function HomeRecipeStack() {
         options={{ headerShown: false }}
         name="SplashScreen"
         component={SplashScreen}
+      />
+      <stack.Screen
+        options={{ headerShown: false }}
+        name="SignIn"
+        component={SignIn}
+      />
+      <stack.Screen
+        options={{ headerShown: false }}
+        name="SignUp"
+        component={SignUp}
       />
       <stack.Screen
         options={{ headerShown: true }}

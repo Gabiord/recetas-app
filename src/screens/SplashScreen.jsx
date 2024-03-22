@@ -36,7 +36,7 @@ const SplashScreen = ({navigation}) => {
           <Text style={styles.textBelow}>Get         Cooking</Text>
           <Text style={styles.textEnd}>La manera mas simple de cocinar</Text>
         </View>
-        <TouchableOpacity onPress={()=>{navigation.navigate("Home")}}>
+        <TouchableOpacity onPress={()=>{navigation.navigate("SignIn")}}>
           <View style={styles.btnContainerStyle}>
             <Text style={styles.btnTextStyle}> Comenzar    ➜</Text>
           </View>
