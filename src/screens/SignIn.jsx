@@ -2,37 +2,35 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  TextInput,
   View,
   Image,
 } from "react-native";
 import React from "react";
 import { colors } from "../global/colors";
 import IconsAssets from "../../assets/icons/IconsAssets";
+import InputForm from "../components/InputForm";
+import SubmitButton from "../components/SubmitButton";
 
 const SignIn = ({navigation}) => {
+
+  const onSubmit = () => {}
+
+  const onChange = () => {null}
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.titleText}>Hola,</Text>
         <Text style={styles.subtitleText}>Bienvenid@ de vuelta!</Text>
       </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputName}>Email</Text>
-        <TextInput style={styles.inputForm} placeholder="Enter Email" />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputName}>Contraseña</Text>
-        <TextInput style={styles.inputForm} placeholder="Enter Contraseña" />
-      </View>
+      <InputForm label={"Email"} placeholder={"Enter Email"} />
+      <InputForm label={"Contraseña"} placeholder={"Enter Contraseña"} />
       <Pressable>
         <Text style={styles.yellowText}>Olvidaste tu Contraseña?</Text>
       </Pressable>
 
       <View style={styles.bottomContainer}>
-        <View style={styles.btnContainerStyle}>
-          <Text style={styles.btnTextStyle}> Inicia Sesion ➜</Text>
-        </View>
+        <SubmitButton title={"Inicia Sesion ➜"} onSubmit={onSubmit}/>
         <Text style={styles.slashLine}>- O iniciar Sesion Con -</Text>
         <View style={styles.rowContainer}>
           <Image source={IconsAssets.google} />
@@ -96,21 +94,6 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsRegular",
     fontSize: 13,
     color: colors.secondary100,
-  },
-  btnContainerStyle: {
-    backgroundColor: colors.primary100,
-    width: 243,
-    height: 54,
-    borderRadius: 5,
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  btnTextStyle: {
-    color: colors.white,
-    fontSize: 16,
-    textAlign: "center",
-    fontFamily: "PoppinsRegular",
-    fontWeight: "bold",
   },
   slashLine: {
     fontFamily: "PoppinsRegular",

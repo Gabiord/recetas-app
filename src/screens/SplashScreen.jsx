@@ -3,18 +3,19 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  TouchableOpacity,
-  SafeAreaView
+  Image
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import { colors } from "../global/colors";
+import SubmitButton from "../components/SubmitButton";
 
 const background = require("../../assets/images/splashScreen_backgroundImage.jpg");
 
 const SplashScreen = ({navigation}) => {
+
+  const onSubmit = ()=>{navigation.navigate("SignIn")}
 
   return (
     <ImageBackground
@@ -36,11 +37,7 @@ const SplashScreen = ({navigation}) => {
           <Text style={styles.textBelow}>Get         Cooking</Text>
           <Text style={styles.textEnd}>La manera mas simple de cocinar</Text>
         </View>
-        <TouchableOpacity onPress={()=>{navigation.navigate("SignIn")}}>
-          <View style={styles.btnContainerStyle}>
-            <Text style={styles.btnTextStyle}> Comenzar    ➜</Text>
-          </View>
-        </TouchableOpacity>
+        <SubmitButton title = {"Comenzar    ➜"} onSubmit={onSubmit}/>
       </View>
       </LinearGradient>
     </ImageBackground>
@@ -86,20 +83,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "PoppinsRegular",
     marginTop:10
-  },
-  btnContainerStyle: {
-    backgroundColor: colors.primary100,
-    width: 243,
-    height: 54,
-    borderRadius: 5,
-    justifyContent: "center",
-    marginTop: 70,
-  },
-  btnTextStyle: {
-    color: colors.white,
-    fontSize: 16,
-    textAlign: "center",
-    fontFamily: "PoppinsRegular",
-    fontWeight: "bold",
-  },
+  }
 });

@@ -1,15 +1,15 @@
 import {
   StyleSheet,
-  SafeAreaView,
   Platform,
   StatusBar,
   View,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { fonts } from "./src/global/fonts";
-import TabNavigator from "./src/navigation/TabNavigator";
 import { Provider } from "react-redux";
 import store from "./src/store";
+import { useState } from "react";
+import MainNavigator from "./src/navigation/MainNavigator";
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
@@ -18,10 +18,12 @@ export default function App() {
     return null;
   }
 
+  const [auth, setAuth]= useState(false)
+
   return (
     <Provider store={store}>
       <View style={styles.androidSafeArea}>
-        <TabNavigator />
+        <MainNavigator/>
       </View>
     </Provider>
   );

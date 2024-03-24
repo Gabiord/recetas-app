@@ -23,21 +23,6 @@ export default function HomeRecipeStack() {
       })}
     >
       <stack.Screen
-        options={{ headerShown: false }}
-        name="SplashScreen"
-        component={SplashScreen}
-      />
-      <stack.Screen
-        options={{ headerShown: false }}
-        name="SignIn"
-        component={SignIn}
-      />
-      <stack.Screen
-        options={{ headerShown: false }}
-        name="SignUp"
-        component={SignUp}
-      />
-      <stack.Screen
         options={{ headerShown: true }}
         name="Home"
         component={Home}

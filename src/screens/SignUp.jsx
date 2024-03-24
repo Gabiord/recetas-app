@@ -3,9 +3,11 @@ import Checkbox from "expo-checkbox";
 import { useState } from "react";
 import { colors } from "../global/colors";
 import IconsAssets from "../../assets/icons/IconsAssets";
+import InputForm from "../components/InputForm"
 
 const SignUp = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const onChange = () => {}
 
   return (
     <ScrollView style={styles.container} persistentScrollbar={false}>
@@ -16,22 +18,10 @@ const SignUp = ({ navigation }) => {
         </Text>
         <Text style={styles.subtitleText}>no tomara mucho tiempo.</Text>
       </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputName}>Nombre</Text>
-        <TextInput style={styles.inputForm} placeholder="Ingresar Nombre" />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputName}>Email</Text>
-        <TextInput style={styles.inputForm} placeholder="Ingresar Nombre" />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputName}>Contraseña</Text>
-        <TextInput style={styles.inputForm} placeholder="Ingresar Nombre" />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputName}></Text>
-        <TextInput style={styles.inputForm} placeholder="Ingresar Nombre" />
-      </View>
+      <InputForm label={"Nombre"} placeholder={"Ingresar Nombre"} onChange={onChange} />
+      <InputForm label={"Email"} placeholder={"Ingresar Email"} onChange={onChange} />
+      <InputForm label={"Contraseña"} placeholder={"Ingresar Contraseña"} onChange={onChange} />
+      <InputForm label={"Repetir Contraseña"} placeholder={"Ingresar Contraseña"} onChange={onChange} />
       <View style={styles.checkboxContainer}>
         <Checkbox
           style={styles.checkbox}
@@ -93,25 +83,6 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsRegular",
     fontSize: 13,
   },
-  inputContainer: {
-    marginBottom: 25,
-  },
-  inputName: {
-    fontFamily: "PoppinsRegular",
-    fontSize: 13,
-    marginBottom: 10,
-  },
-  inputForm: {
-    borderColor: colors.gray3,
-    borderWidth: 1.5,
-    width: 315,
-    height: 55,
-    borderRadius: 10,
-    fontFamily: "PoppinsRegular",
-    fontSize: 13,
-    paddingLeft: 25,
-  },
-
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 20,
