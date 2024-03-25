@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { colors } from "../global/colors";
 
 const InputForm = ({ label, error, onChange, isSecure, placeholder }) => {
+  
   const [input, setInput] = useState("");
 
   const onChangeText = (text) => {
-    setInput(text);
+    setInput(text)
+    onChange(text);
   };
 
   return (

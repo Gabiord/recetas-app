@@ -1,47 +1,107 @@
-import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Image, StatusBar } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Image,
+  StatusBar,
+} from "react-native";
 import Checkbox from "expo-checkbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { colors } from "../global/colors";
 import IconsAssets from "../../assets/icons/IconsAssets";
-import InputForm from "../components/InputForm"
+import InputForm from "../components/InputForm";
+import SubmitButton from "../components/SubmitButton";
+import { useSignUpMutation } from "../services/authService";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/auth/authSlice";
+import { signUpSchema } from "../validations/signUpSchema";
+import Swal from 'sweetalert2'
 
 const SignUp = ({ navigation }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const onChange = () => {}
+
+  const [triggerSignup, result] = useSignUpMutation();
+
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    try {
+      signUpSchema.validateSync({
+        name,
+        email,
+        password,
+        passwordConfirm,
+        toggleCheckBox
+      });
+
+    } catch (error) {
+      console.log(error)
+      };
+    
+  };
+
+  useEffect(() => {
+    if (result.data) {
+      dispatch(setUser(result));
+    }
+  }, [result]);
 
   return (
     <ScrollView style={styles.container} persistentScrollbar={false}>
       <View style={styles.topContainer}>
         <Text style={styles.titleText}>Hola,</Text>
-        <Text style={styles.subtitleText}>
-          Vamos a crear una nueva cuenta,
-        </Text>
+        <Text style={styles.subtitleText}>Vamos a crear una nueva cuenta,</Text>
         <Text style={styles.subtitleText}>no tomara mucho tiempo.</Text>
       </View>
-      <InputForm label={"Nombre"} placeholder={"Ingresar Nombre"} onChange={onChange} />
-      <InputForm label={"Email"} placeholder={"Ingresar Email"} onChange={onChange} />
-      <InputForm label={"Contraseña"} placeholder={"Ingresar Contraseña"} onChange={onChange} />
-      <InputForm label={"Repetir Contraseña"} placeholder={"Ingresar Contraseña"} onChange={onChange} />
+      <InputForm
+        label={"Nombre"}
+        placeholder={"Ingresar Nombre"}
+        onChange={setName}
+      />
+      <InputForm
+        label={"Email"}
+        placeholder={"Ingresar Email"}
+        onChange={setEmail}
+      />
+      <InputForm
+        label={"Contraseña"}
+        placeholder={"Ingresar Contraseña"}
+        onChange={setPassword}
+        isSecure={true}
+      />
+      <InputForm
+        label={"Repetir Contraseña"}
+        placeholder={"Ingresar Contraseña"}
+        onChange={setPasswordConfirm}
+        isSecure={true}
+      />
       <View style={styles.checkboxContainer}>
         <Checkbox
           style={styles.checkbox}
           value={toggleCheckBox}
           onValueChange={(newValue) => {
             setToggleCheckBox(newValue);
-            console.log(toggleCheckBox);
           }}
           color={colors.secondary100}
         />
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("ToS");
+          }}
+        >
           <Text style={styles.yellowText}>
             Acepto los terminos & condiciones
           </Text>
         </Pressable>
       </View>
       <View style={styles.bottomContainer}>
-        <View style={styles.btnContainerStyle}>
-          <Text style={styles.btnTextStyle}> Inicia Sesion ➜</Text>
-        </View>
+        <SubmitButton title={"Registrarse"} onSubmit={onSubmit} />
         <Text style={styles.slashLine}>- O iniciar Sesion Con -</Text>
         <View style={styles.rowContainer}>
           <Image source={IconsAssets.google} />
@@ -49,14 +109,16 @@ const SignUp = ({ navigation }) => {
         </View>
         <View style={styles.rowContainer}>
           <Text style={styles.haveAccountText}>Ya tienes Cuenta? </Text>
-          <Pressable onPress={()=>{navigation.navigate("SignIn")}}>
-            <Text style={styles.yellowText}>
-              Iniciar Sesion
-            </Text>
+          <Pressable
+            onPress={() => {
+              navigation.navigate("SignIn");
+            }}
+          >
+            <Text style={styles.yellowText}>Iniciar Sesion</Text>
           </Pressable>
         </View>
       </View>
-    </ScrollView >
+    </ScrollView>
   );
 };
 
@@ -64,9 +126,9 @@ export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     alignSelf: "center",
-    paddingTop: StatusBar.currentHeight+30
+    paddingTop: StatusBar.currentHeight + 30,
   },
   topContainer: {
     paddingTop: 20,
@@ -86,7 +148,7 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 20,
-    marginLeft:10
+    marginLeft: 10,
   },
   checkbox: {
     ColorValue: colors.secondary100,
@@ -97,30 +159,15 @@ const styles = StyleSheet.create({
     color: colors.secondary100,
     marginLeft: 5,
   },
-  btnContainerStyle: {
-    backgroundColor: colors.primary100,
-    width: 243,
-    height: 54,
-    borderRadius: 5,
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  btnTextStyle: {
-    color: colors.white,
-    fontSize: 16,
-    textAlign: "center",
-    fontFamily: "PoppinsRegular",
-    fontWeight: "bold",
-  },
   slashLine: {
     fontFamily: "PoppinsRegular",
     fontSize: 13,
     color: colors.gray3,
-    marginTop:25
+    marginTop: 25,
   },
   rowContainer: {
     flexDirection: "row",
-    margin:10
+    margin: 10,
   },
   haveAccountText: {
     fontFamily: "PoppinsRegular",
