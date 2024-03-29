@@ -17,7 +17,6 @@ import { useSignUpMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/auth/authSlice";
 import { signUpSchema } from "../validations/signUpSchema";
-import Swal from 'sweetalert2'
 
 const SignUp = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -27,7 +26,6 @@ const SignUp = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
   const [triggerSignup, result] = useSignUpMutation();
-
   const dispatch = useDispatch();
 
   const onSubmit = () => {
@@ -39,11 +37,11 @@ const SignUp = ({ navigation }) => {
         passwordConfirm,
         toggleCheckBox
       });
+      triggerSignup({displayName: name, email, password})
 
     } catch (error) {
       console.log(error)
       };
-    
   };
 
   useEffect(() => {

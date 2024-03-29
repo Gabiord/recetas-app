@@ -1,21 +1,39 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
-import React from "react";
+import { Pressable, StyleSheet, Text, View, Image } from "react-native";
+import { useState } from "react";
 import { colors } from "../global/colors";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import InputForm from "../components/InputForm";
 import SubmitButton from "../components/SubmitButton";
+import { useLoginMutation } from "../services/authService";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setUser } from "../features/auth/authSlice";
 
-const SignIn = ({navigation}) => {
+const SignIn = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [triggerSignIn, result] = useLoginMutation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.authReducer.value.user);
+  const onSubmit = () => {
+    try {
+      console.log(email);
+      console.log(password);
+      triggerSignIn({ email, password });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const onSubmit = () => {}
-
-  const onChange = () => {null}
+  useEffect(() => {
+    if (result.data) {
+      dispatch(
+        setUser(result.data)
+      )
+    
+      console.log(user)
+    }
+  }, [result]);
 
   return (
     <View style={styles.container}>
@@ -23,14 +41,22 @@ const SignIn = ({navigation}) => {
         <Text style={styles.titleText}>Hola,</Text>
         <Text style={styles.subtitleText}>Bienvenid@ de vuelta!</Text>
       </View>
-      <InputForm label={"Email"} placeholder={"Enter Email"} />
-      <InputForm label={"Contraseña"} placeholder={"Enter Contraseña"} />
+      <InputForm
+        label={"Email"}
+        placeholder={"Enter Email"}
+        onChange={setEmail}
+      />
+      <InputForm
+        label={"Contraseña"}
+        placeholder={"Enter Contraseña"}
+        onChange={setPassword}
+      />
       <Pressable>
         <Text style={styles.yellowText}>Olvidaste tu Contraseña?</Text>
       </Pressable>
 
       <View style={styles.bottomContainer}>
-        <SubmitButton title={"Inicia Sesion ➜"} onSubmit={onSubmit}/>
+        <SubmitButton title={"Inicia Sesion ➜"} onSubmit={onSubmit} />
         <Text style={styles.slashLine}>- O iniciar Sesion Con -</Text>
         <View style={styles.rowContainer}>
           <Image source={IconsAssets.google} />
@@ -38,10 +64,12 @@ const SignIn = ({navigation}) => {
         </View>
         <View style={styles.rowContainer}>
           <Text style={styles.haveAccountText}>No tienes Cuenta? </Text>
-          <Pressable onPress={()=>{navigation.navigate("SignUp")}}>
-            <Text style={styles.yellowText}>
-              Crear cuenta
-            </Text>
+          <Pressable
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
+          >
+            <Text style={styles.yellowText}>Crear cuenta</Text>
           </Pressable>
         </View>
       </View>
@@ -57,8 +85,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 80,
   },
-  topContainer:{
-    paddingTop:20,
+  topContainer: {
+    paddingTop: 20,
     paddingBottom: 30,
   },
   bottomContainer: {
@@ -72,13 +100,13 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsRegular",
     fontSize: 20,
   },
-  inputContainer:{
+  inputContainer: {
     marginBottom: 25,
   },
   inputName: {
     fontFamily: "PoppinsRegular",
     fontSize: 13,
-    marginBottom:10
+    marginBottom: 10,
   },
   inputForm: {
     borderColor: colors.gray3,
@@ -99,11 +127,11 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsRegular",
     fontSize: 13,
     color: colors.gray3,
-    marginTop:25
+    marginTop: 25,
   },
   rowContainer: {
     flexDirection: "row",
-    margin:20
+    margin: 20,
   },
   haveAccountText: {
     fontFamily: "PoppinsRegular",
