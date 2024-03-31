@@ -4,34 +4,50 @@ import { colors } from "../global/colors";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import InputForm from "../components/InputForm";
 import SubmitButton from "../components/SubmitButton";
-import { useLoginMutation } from "../services/authService";
+import { useSignInMutation } from "../services/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUser } from "../features/auth/authSlice";
+import { init, insertSession } from "../db";
 
 const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [triggerSignIn, result] = useLoginMutation();
+  const [triggerSignIn, result] = useSignInMutation();
+  const [errorMail, setErrorMail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.authReducer.value.user);
+
   const onSubmit = () => {
     try {
-      console.log(email);
-      console.log(password);
       triggerSignIn({ email, password });
     } catch (error) {
-      console.log(error);
+      switch (error.path) {
+        case "email":
+          setErrorMail(err.message);
+          break;
+        case "password":
+          setErrorPassword(err.message);
+          break;
+        default:
+          break;
+      }
     }
   };
 
   useEffect(() => {
     if (result.data) {
-      dispatch(
-        setUser(result.data)
-      )
-    
-      console.log(user)
+      console.log(result.data)
+      dispatch(setUser(result.data));
+      insertSession({
+        localId: result.data.localId,
+        displayName: result.data.displayName,
+        email: result.data.email,
+        token: result.data.idToken,
+      })
+      .then((result)=> console.log(result))
+      .catch((error)=>  console.error(error))
     }
   }, [result]);
 
