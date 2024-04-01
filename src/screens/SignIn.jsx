@@ -3,7 +3,7 @@ import { useState } from "react";
 import { colors } from "../global/colors";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import InputForm from "../components/InputForm";
-import SubmitButton from "../components/SubmitButton";
+import CustomButton from "../components/CustomButton";
 import { useSignInMutation } from "../services/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -19,7 +19,7 @@ const SignIn = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = () => {
+  const onPress = () => {
     try {
       triggerSignIn({ email, password });
     } catch (error) {
@@ -72,7 +72,7 @@ const SignIn = ({ navigation }) => {
       </Pressable>
 
       <View style={styles.bottomContainer}>
-        <SubmitButton title={"Inicia Sesion ➜"} onSubmit={onSubmit} />
+        <CustomButton title={"Inicia Sesion ➜"} onPress={onPress} focused={true}/>
         <Text style={styles.slashLine}>- O iniciar Sesion Con -</Text>
         <View style={styles.rowContainer}>
           <Image source={IconsAssets.google} />

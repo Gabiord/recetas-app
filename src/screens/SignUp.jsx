@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { colors } from "../global/colors";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import InputForm from "../components/InputForm";
-import SubmitButton from "../components/SubmitButton";
+import CustomButton from "../components/CustomButton";
 import { useSignUpMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/auth/authSlice";
@@ -28,7 +28,7 @@ const SignUp = ({ navigation }) => {
   const [triggerSignup, result] = useSignUpMutation();
   const dispatch = useDispatch();
 
-  const onSubmit = () => {
+  const onPress = () => {
     try {
       signUpSchema.validateSync({
         name,
@@ -99,7 +99,7 @@ const SignUp = ({ navigation }) => {
         </Pressable>
       </View>
       <View style={styles.bottomContainer}>
-        <SubmitButton title={"Registrarse"} onSubmit={onSubmit} />
+        <CustomButton title={"Registrarse"} onPress={onPress} focused={true}/>
         <Text style={styles.slashLine}>- O iniciar Sesion Con -</Text>
         <View style={styles.rowContainer}>
           <Image source={IconsAssets.google} />

@@ -9,13 +9,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import IconsAssets from "../../assets/icons/IconsAssets";
 import { colors } from "../global/colors";
-import SubmitButton from "../components/SubmitButton";
+import CustomButton from "../components/CustomButton";
 
 const background = require("../../assets/images/splashScreen_backgroundImage.jpg");
 
 const SplashScreen = ({navigation}) => {
 
-  const onSubmit = ()=>{navigation.navigate("SignIn")}
+  const onPress = ()=>{navigation.navigate("SignIn")}
 
   return (
     <ImageBackground
@@ -37,7 +37,7 @@ const SplashScreen = ({navigation}) => {
           <Text style={styles.textBelow}>Get         Cooking</Text>
           <Text style={styles.textEnd}>La manera mas simple de cocinar</Text>
         </View>
-        <SubmitButton title = {"Comenzar    ➜"} onSubmit={onSubmit}/>
+        <CustomButton title = {"Comenzar    ➜"} onPress={onPress} focused={true} width={300} height={50}/>
       </View>
       </LinearGradient>
     </ImageBackground>
