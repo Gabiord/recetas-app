@@ -1,20 +1,19 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomButton from "../components/CustomButton";
 import { colors } from "../global/colors";
 import * as ImagePicker from "expo-image-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { setCameraImage } from "../features/auth/authSlice";
-import {usePostProfileImageMutation} from "../services/authService"
+import { usePostProfileImageMutation } from "../services/shopService";
 
-const ImageSelector = ({navigation}) => {
-    const image = useSelector((state) => state.authReducer.value.imageCamara)
-    const localId = useSelector((state) => state.authReducer.value.localId)
-    const [imageTaked, setImageTaked]= useState(image)
-    const dispatch = useDispatch();
+const ImageSelector = ({ navigation }) => {
+  const image = useSelector((state) => state.authReducer.value.cameraImage);
+  const [imageTaked, setImageTaked] = useState(image);
+  const localId = useSelector((state) => state.authReducer.value.localId);
+  const dispatch = useDispatch();
 
-    const [triggerSaveProfileImage, result] = usePostProfileImageMutation();
-  
+  const [triggerSaveProfileImage, result] = usePostProfileImageMutation();
 
   const verifyCameraPermssions = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -25,8 +24,8 @@ const ImageSelector = ({navigation}) => {
     }
   };
 
+
   const pickImage = async () => {
-    console.log("hola");
     const cameraPermssions = await verifyCameraPermssions();
     if (cameraPermssions) {
       let result = await ImagePicker.launchCameraAsync({
@@ -34,7 +33,7 @@ const ImageSelector = ({navigation}) => {
         allowsEditing: true,
         aspect: [1, 1],
         base64: true,
-        quality: 1
+        quality: 1,
       });
       if (!result.canceled) {
         setImageTaked(result.assets[0].uri);
@@ -43,8 +42,10 @@ const ImageSelector = ({navigation}) => {
   };
 
   const confirmImage = () => {
-    dispatch(setCameraImage(imageTaked))
-    triggerSaveProfileImage({ localId, image})
+    dispatch(setCameraImage(imageTaked));
+    console.log(result);
+    triggerSaveProfileImage({ localId, imageTaked });
+    console.log(result);
     navigation.goBack();
   };
 
@@ -52,7 +53,10 @@ const ImageSelector = ({navigation}) => {
     <View>
       {imageTaked ? (
         <View style={styles.container}>
-          <Image source={{ uri: imageTaked }} style={styles.profileImageStyle} />
+          <Image
+            source={{ uri: imageTaked }}
+            style={styles.profileImageStyle}
+          />
           <CustomButton
             title={"Tomar nueva foto"}
             focused={false}

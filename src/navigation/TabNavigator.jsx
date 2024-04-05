@@ -53,7 +53,7 @@ const TabNavigator = () => {
         />
 
         <Tab.Screen
-          name="Notifications"
+          name="NotificationsStack"
           component={NotificationsStack}
           options={{
             tabBarIcon: ({ focused }) => {

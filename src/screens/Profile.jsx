@@ -1,20 +1,36 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocationSelector from "./LocationSelector";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CustomButton from "../components/CustomButton";
 import ProfileRecipesList from "../components/ProfileRecipesList";
 import { colors } from "../global/colors";
+import { useGetProfileImageQuery } from "../services/shopService";
+import { setCameraImage } from "../features/auth/authSlice";
 
 const Profile = ({navigation}) => {
   const user = useSelector((state) => state.authReducer.value);
-  const profileImage = useSelector((state) => state.authReducer.value.imageCamara)
+  const cameraImage = useSelector((state) => state.authReducer.value.cameraImage);
+  const localId = useSelector((state) => state.authReducer.value.localId);
+  const dispatch = useDispatch();
+
+  const {
+    data: profileImage,
+    isLoading,
+    error
+  } = useGetProfileImageQuery(localId)
+
+    useEffect(()=>{
+     if(profileImage){
+      dispatch(setCameraImage(profileImage.image))
+     }
+    },[profileImage])
 
   return (
     <View style={styles.container}>
       <View style= {styles.topContainer}>
         <TouchableOpacity onPress={()=>navigation.navigate("Image Selector")}>
-          {profileImage? <Image style={styles.profileImageStyle} source={{ uri: profileImage }}/> : <Image style={styles.profileImageStyle} source={require("../../assets/images/defaultProfileImage.png")} /> }
+          {cameraImage? <Image style={styles.profileImageStyle} source={{ uri: cameraImage }}/> : <Image style={styles.profileImageStyle} source={require("../../assets/images/defaultProfileImage.png")} /> }
         </TouchableOpacity>
         <View style={styles.infoContainer}>
           <Text style={styles.smallFontProfile}>Recetas</Text>

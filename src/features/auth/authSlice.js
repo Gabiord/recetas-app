@@ -8,7 +8,7 @@ export const authSlice = createSlice({
             displayName: null,
             email: null,
             token: null,
-            imageCamara : null,
+            cameraImage : null,
         }
     },
     reducers: {
@@ -23,7 +23,7 @@ export const authSlice = createSlice({
         clearUser: (state) => (state.value = {user: null, token: null}),
         setCameraImage: (state, action) => {
             state.value ={
-                ...state.value, imageCamara: action.payload
+                ...state.value, cameraImage: action.payload
             }
 
         }

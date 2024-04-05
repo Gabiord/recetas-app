@@ -18,21 +18,9 @@ export const authApi = createApi({
                 method: 'POST',
                 body: auth,
             })
-        }),
-        getProfileImage: builder.query({
-            query: (localId) => `profileImages/${localId}.json`
-        }),
-        postProfileImage: builder.mutation({
-            query: ({image, localId}) => ({
-            url: `profileImages/${localId}.json`,
-            method: "PUT",
-            body:{
-                image: image
-            }
-        })
         })
 
     })
 })
 
-export const { useSignUpMutation, useSignInMutation, useGetProfileImageQuery, usePostProfileImageMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation} = authApi;
