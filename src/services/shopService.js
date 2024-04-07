@@ -13,6 +13,10 @@ export const shopApi = createApi({
         `recipes.json?orderBy="category"&equalTo="${category}"`,
     }),
 
+    getRecipesById: builder.query({
+      query: (id) => `recipes.json?orderBy="id"&equalTo=${id}`,
+    }),
+
     getProfileImage: builder.query({
       query: (localId) => `profileImages/${localId}.json`,
     }),
@@ -31,6 +35,7 @@ export const shopApi = createApi({
 export const {
   useGetRecipesQuery,
   useGetRecipesByCategoryQuery,
+  useGetRecipesByIdQuery,
   useGetProfileImageQuery,
   usePostProfileImageMutation,
 } = shopApi;

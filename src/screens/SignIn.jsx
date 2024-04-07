@@ -8,7 +8,7 @@ import { useSignInMutation } from "../services/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUser } from "../features/auth/authSlice";
-import { init, insertSession } from "../db";
+import { insertSession } from "../db";
 
 const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState("");

@@ -17,7 +17,6 @@ const CardList = ({ navigation }) => {
 
   const [recipes, setRecipes] = useState([])
 
-  
   const {
     data: recipesFilteredByCategory,
     isLoading,

@@ -7,30 +7,38 @@ import {
 } from "react-native";
 import { useState } from "react";
 import React, { useEffect } from "react";
-import recetas from "../data/recetas.json";
+import { useGetRecipesByIdQuery } from "../services/shopService";
 
 const RecipeDetail = ({ navigation, route }) => {
-  const [receta, setReceta] = useState(null);
-
+  const [recipe, setRecipe] = useState(null);
   const { id } = route.params;
 
-  useEffect(() => {
-    const recetaFinded = recetas.find((item) => item.id === id);
-    setReceta(recetaFinded);
-  }, [id]);
+  const {
+    data: recipeFilteredById,
+    isLoading,
+    error
+  } = useGetRecipesByIdQuery(id)
 
-  if (receta) {
+  useEffect(() => {
+    if(recipeFilteredById){
+      const result = Object.values(recipeFilteredById)
+      setRecipe(result)
+      console.log(recipe)
+    }
+  }, [recipeFilteredById]);
+
+  if (recipe) {
     return (
       <SafeAreaView>
         <View>
           {/* <Image style={styles.images} source={receta.image} /> */}
-          <Text>{receta.name}</Text>
+          <Text>{recipe[0].name}</Text>
         </View>
         <View>
           <View>
             <View>{/* ImageChef */}</View>
             <View>
-              <Text>{receta.chef}</Text>
+              <Text>{recipe[0].chef}</Text>
               {/* Locacion Chef */}
             </View>
           </View>
