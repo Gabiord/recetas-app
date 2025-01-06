@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 
-const db = SQLite.openDatabase("sessions.db");
+const db = SQLite.openDatabaseAsync("sessions.db");
 
 export const init = () => {
   console.log("init")
@@ -21,7 +21,7 @@ export const init = () => {
 
 export const insertSession = ({localId,displayName, email, token }) => {
   const promise = new Promise((accept, reject) => {
-    db.transaction((tx) => {
+    db.then((tx) => {
       tx.executeSql(
         "INSERT INTO sessions (localId, displayName, email, token) VALUES (?, ?, ?, ?);",
         [localId, displayName, email, token],
@@ -36,7 +36,7 @@ export const insertSession = ({localId,displayName, email, token }) => {
 export const fetchSession = () => {
   console.log("fetching")
   const promise = new Promise((resolve, reject) => {
-    db.transaction((tx) => {
+    db.then((tx) => {
       tx.executeSql(
         "SELECT * FROM sessions",
         [],

@@ -14,6 +14,7 @@ const MainNavigator = () => {
     (async() => {
       try {
         const session = await fetchSession()
+        console.log("inicio")
         console.log(session)
         if(session.rows._array.length){
           const savedUser = session.rows._array[0];
