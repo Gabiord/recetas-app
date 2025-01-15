@@ -4,13 +4,19 @@ import {
   Text,
   View,
   TouchableOpacity,
+  FlatList,
+  Image,
+  ImageBackground
 } from "react-native";
 import { useState } from "react";
 import React, { useEffect } from "react";
 import { useGetRecipesByIdQuery } from "../services/shopService";
+import { registerWebModule } from "expo";
 
 const RecipeDetail = ({ navigation, route }) => {
   const [recipe, setRecipe] = useState(null);
+  const [procedure, setProcedure] = useState(null)
+  const [image, setImage] = useState(null)
   const { id } = route.params;
 
   const {
@@ -20,10 +26,12 @@ const RecipeDetail = ({ navigation, route }) => {
   } = useGetRecipesByIdQuery(id)
 
   useEffect(() => {
-    if(recipeFilteredById){
+    if (recipeFilteredById) {
       const result = Object.values(recipeFilteredById)
       setRecipe(result)
-      console.log(recipe)
+      setProcedure(result[0].procedure)
+      setImage(result[0].image)
+      console.log(result[0].image)
     }
   }, [recipeFilteredById]);
 
@@ -31,8 +39,17 @@ const RecipeDetail = ({ navigation, route }) => {
     return (
       <SafeAreaView>
         <View>
-          {/* <Image style={styles.images} source={receta.image} /> */}
+          <View>
+                <ImageBackground
+        source={image}
+        resizeMode="cover"
+        style={styles.container}
+      ><Text>Inside</Text></ImageBackground> 
+          </View>
           <Text>{recipe[0].name}</Text>
+        </View>
+        <View>
+
         </View>
         <View>
           <View>
@@ -52,7 +69,14 @@ const RecipeDetail = ({ navigation, route }) => {
               <Text>Ingredient</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text>Procedure</Text>
+              <Text>Procedimiento</Text>
+              <View>
+                <FlatList
+                  data={procedure}
+                  renderItem={({ item }) => <Text style={styles.item}> {item.step}. {item.name}</Text>}
+                />
+              </View>
+
             </TouchableOpacity>
           </View>
           <View>

@@ -23,8 +23,11 @@ const CardList = ({ navigation }) => {
     error,
   } = (categorySelected? useGetRecipesByCategoryQuery(categorySelected): useGetRecipesQuery()) 
 
+
   useEffect(() => {
+    console.log("esta cargando")
     console.log(isLoading)
+ 
     if (recipesFilteredByCategory) {
       const recipesRaw = Object.values(recipesFilteredByCategory);
       const recipesFiltered = recipesRaw.filter((product) =>
